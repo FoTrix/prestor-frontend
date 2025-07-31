@@ -1,35 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import LoginPage from "./pages/auth/LoginPage";
+import RegisterPage from "./pages/auth/RegisterPage";
+import Dashboard from "./pages/dashboard/Dashboard";
+import ClientPage from "./pages/presupuestos/ClientPage";
+import ProductPage from "./pages/Products/ProductPage";
+import ProductFormPage from "./pages/Products/ProductFormPage";
+import PersonasPage from './pages/Personas/PersonasPage';
+import PersonaFormPage from './pages/Personas/PersonaFormPage';
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function App() {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="bg-gray-800 min-h-screen">
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={
+          localStorage.getItem('token') ? <Navigate to="/dashboard" /> : <LoginPage />
+        } />
+        <Route path="/register" element={
+          localStorage.getItem('token') ? <Navigate to="/dashboard" /> : <RegisterPage />
+        } />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/clientes/:clientId" element={<ClientPage />} />
+        <Route path="/productos" element={<ProductPage />} />
+        <Route path="/productos/crear" element={<ProductFormPage />} />
+        <Route path="/productos/editar/:id" element={<ProductFormPage />} />
+        <Route path="/personas" element={<PersonasPage />} />
+            <Route path="/personas/crear" element={<PersonaFormPage />} />
+            <Route path="/personas/editar/:id" element={<PersonaFormPage />} />
+        <Route path="*" element={<Navigate to="/login" />} />
+      </Routes>
+    </BrowserRouter>
+    </div>
+  );
 }
-
-export default App
