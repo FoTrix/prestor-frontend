@@ -43,7 +43,6 @@ export default function CrearPresupuesto() {
   const [presupuestoId, setPresupuestoId] = useState<string | null>(null)
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search)
     const editId = window.location.pathname.includes("/editar/")
       ? window.location.pathname.split("/editar/")[1].split("?")[0]
       : null

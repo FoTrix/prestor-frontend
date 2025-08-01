@@ -30,11 +30,6 @@ interface PresupuestoData {
 export const generatePresupuestoPDF = async (presupuesto: PresupuestoData) => {
   const doc = new jsPDF()
 
-  // Colors
-  const primaryColor = [64, 64, 64] // Dark gray
-  const secondaryColor = [128, 128, 128] // Light gray
-  const accentColor = [0, 0, 0] // Black
-
   // Header background
   doc.setFillColor(240, 240, 240)
   doc.rect(0, 0, 210, 60, "F")
