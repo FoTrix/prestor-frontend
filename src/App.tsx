@@ -7,6 +7,8 @@ import ProductPage from "./pages/Products/ProductPage";
 import ProductFormPage from "./pages/Products/ProductFormPage";
 import PersonasPage from './pages/Personas/PersonasPage';
 import PersonaFormPage from './pages/Personas/PersonaFormPage';
+import CrearPresupuesto from './pages/presupuestos/FormPresupuesto';
+import Presupuesto from './pages/presupuestos/Presupuesto';
 
 export default function App() {
   return (
@@ -27,6 +29,9 @@ export default function App() {
         <Route path="/personas" element={<PersonasPage />} />
             <Route path="/personas/crear" element={<PersonaFormPage />} />
             <Route path="/personas/editar/:id" element={<PersonaFormPage />} />
+            <Route path="/presupuestos/crear" element={<CrearPresupuesto />} />
+            <Route path="/presupuestos/:codigo" element={<Presupuesto />} />
+            <Route path="/presupuestos/editar/:id" element={<CrearPresupuesto />} />
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
     </BrowserRouter>
